@@ -8,13 +8,13 @@ class BasicTrash {
 
         this.game = game; 
         this.loc = new JSVector((Math.random()*this.game.canvas.width),-50);
-        this.vel = new JSVector(0,4);   // velocity
+        this.vel = new JSVector(0,8);   // velocity
         this.acc = new JSVector(0,0);   //steering acceleration
         this.pulser = new JSVector(0,0);
         this.maxSpeed = 6;
         this.clr="rgba(171, 183, 183, 0.7)";
         this.rad=13;
-		
+		this.type = 0;
 		
 		this.markForRemoval = false;
     }
@@ -23,6 +23,7 @@ class BasicTrash {
 		
         this.update();
         this.render();
+		this.checkForCleanUp();
     }
 
 	checkForCleanUp() {
@@ -45,7 +46,7 @@ class BasicTrash {
         ctx.strokeStyle = this.clr;
         ctx.fillStyle = this.clr;
         ctx.beginPath();
-        ctx.arc(this.loc.x, this.loc.y, this.rad, 0, Math.PI*2);
+        ctx.arc(this.loc.x-this.rad/2, this.loc.y, this.rad, 0, Math.PI*2);
         ctx.fill();
         ctx.stroke();
     }
